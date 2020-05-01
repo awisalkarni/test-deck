@@ -13,7 +13,8 @@ class ShowDeck extends Controller
     public function __construct()
     {
         $this->suits = ["S", "H", "D", "C"];
-        $this->pips = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+        //1=A,10=X,11=J,12=Q,13=K
+        $this->pips = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
 
         foreach ($this->suits as $suit) {
             foreach ($this->pips as $pip) {
@@ -26,9 +27,17 @@ class ShowDeck extends Controller
     public function __invoke()
     {
 
+        $rules = [
+            'players' => 'required|numeric|min:0'
+        ];
+
+        request()->validate($rules);
+
         $persons = 5;
 
         shuffle($this->cards);
+
+        // dd($this->cards);
         $players = [];
 
         $distribution = array_chunk($this->cards, $persons);

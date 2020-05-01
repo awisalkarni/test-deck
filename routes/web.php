@@ -18,4 +18,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', 'ShowDeck');
+Route::get('/', 'ShowIndex');
+Route::post('/deal', 'ShowDeck');
