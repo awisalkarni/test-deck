@@ -33,7 +33,7 @@ class ShowDeck extends Controller
 
         request()->validate($rules);
 
-        $persons = 5;
+        $persons = request('players');
 
         shuffle($this->cards);
 
@@ -52,12 +52,12 @@ class ShowDeck extends Controller
 
         foreach ($players as $player) {
             foreach($player as $card) {
-                echo implode('=', $card);
+                echo implode('-', $card);
                 echo ', ';
             }
             echo '<br>';
         }
 
-        return view('index');
+        // return view('index');
     }
 }
